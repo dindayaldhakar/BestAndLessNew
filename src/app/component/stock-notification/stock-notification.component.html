@@ -1,0 +1,96 @@
+
+<ng-container *ngIf="outOfStock$ | async">
+  <ng-container *ngIf="!(hasProductInterests$ | async); else stopNotify">
+    <ng-container *ngIf="prefsEnabled$ | async; else disableNotify">
+      <div class="stock-notification-notes">
+        <p>{{ 'stockNotification.getNotified' | cxTranslate }}</p>
+      </div>
+      <button
+        class="btn btn-primary btn-block btn-notify"
+        type="button"
+        (click)="subscribe()"
+      >
+        {{ 'stockNotification.notifyMe' | cxTranslate }}
+      </button>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #disableNotify>
+  <div class="stock-notification-notes" id="outOfStockMessage">
+    <p>
+      <ng-container *ngIf="anonymous; else loggedIn">
+        <a [routerLink]="{ cxRoute: 'login' } | cxUrl">
+          {{ 'miniLogin.signInRegister' | cxTranslate }}</a
+        >
+        {{ 'stockNotification.getNotifySuffix' | cxTranslate }}<br />
+      </ng-container>
+      <ng-template #loggedIn>
+        {{ 'stockNotification.getNotify' | cxTranslate }}<br />
+        {{ 'stockNotification.activateChannelsPrefix' | cxTranslate
+        }}<a [routerLink]="['/my-account/notification-preference']">{{
+          'stockNotification.channelsLink' | cxTranslate
+        }}</a
+        >{{ 'stockNotification.activateChannelsSuffix' | cxTranslate }}
+      </ng-template>
+    </p>
+  </div>
+  <button
+    class="btn btn-primary btn-block btn-notify"
+    type="button"
+    aria-describedby="outOfStockMessage"
+    (click)="notifiMe(notifiMeModal)"
+  >
+    {{ 'stockNotification.notifyMe' | cxTranslate }}
+  </button>
+</ng-template>
+
+<ng-template #stopNotify>
+  <ng-container *ngIf="!(isRemoveInterestLoading$ | async); else loading">
+    <div class="stock-notification-notes">
+      <p>{{ 'stockNotification.notified' | cxTranslate }}</p>
+    </div>
+    <button
+      class="btn btn-primary btn-block btn-stop-notify"
+      type="button"
+      (click)="unsubscribe()"
+    >
+      {{ 'stockNotification.stopNotify' | cxTranslate }}
+    </button>
+  </ng-container>
+</ng-template>
+
+<ng-template #loading>
+  <div class="cx-dialog-body modal-body">
+    <div class="cx-dialog-row">
+      <div class="col-sm-12">
+        <cx-spinner></cx-spinner>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #notifiMeModal let-modal>
+  <div class="modal-header">
+    <div class="width-100">
+      <h4 class="modal-title text-center mt-4" id="modal-basic-title">LOG IN</h4>    
+      <div class="text-center mt-2">Login to get notified when this product is available</div>
+    </div>    
+    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <form name="form" [formGroup]="addPaymentForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input class="form-control mt-4" type="text" formControlName="email" required placeholder="Email">
+        <input class="form-control mt-4" type="possword" formControlName="password" placeholder="Password">
+        <a class="float-right link-text mt-2 mb-2">FORGOT PASSWORD?</a>
+        <button type="button" class="btn btn-secondary btn-lg btn-block mt-4">LOG IN</button>
+        <div class="text-center mt-4">Don't have a account <a class="link-text">SIGN UP</a></div>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">LOG IN</button>
+  </div> -->
+</ng-template>
