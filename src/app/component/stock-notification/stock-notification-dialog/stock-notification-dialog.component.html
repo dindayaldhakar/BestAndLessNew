@@ -1,0 +1,43 @@
+<ng-container *ngIf="emailSection">
+  <div class="modal-header">
+    <div class="width-100">
+      <h4 class="modal-title text-center mt-4" id="modal-basic-title">LOG IN</h4>    
+      <div class="text-center mt-2">Login to get notified when this product is available</div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <form name="form" [formGroup]="addNotifyForm">
+      <div class="form-group">
+        <input class="form-control mt-4" type="text" formControlName="email" placeholder="Email">
+        <input class="form-control mt-4" type="password" formControlName="password" placeholder="Password">
+        <a class="float-right link-text mt-2 mb-2">FORGOT PASSWORD?</a>
+        <button type="button" (click)="onSubmit()" class="btn btn-secondary btn-lg btn-block mt-4"
+        [disabled]="addNotifyForm.invalid">LOG IN</button>
+        <div class="text-center mt-4">Don't have a account <a class="link-text">SIGN UP</a></div>
+      </div>
+    </form>
+  </div>
+</ng-container>
+<ng-container *ngIf="!emailSection">
+  <div class="modal-header">
+    <div class="width-100">
+      <h4 class="modal-title text-center mt-4" id="modal-basic-title">MANAGE NOTIFICATIONS</h4>    
+      <div class="text-center mt-2">Login to get notified when this product is available</div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <form name="form" [formGroup]="manageNotifyForm">
+      <div class="form-group">
+        <h4 class="modal-title text-center mt-4" id="modal-basic-title">SMS NOTIFICATIONS</h4>    
+        <div class="text-center mt-2">Please enter your mobile number to recive notification</div>
+        <input class="form-control mt-4" type="text" formControlName="mobileNo" placeholder="Mobile number">
+        <div *ngIf="manageNotifyForm.controls.touched && manageNotifyForm.controls.invalid" class="alert alert-danger">  
+          <div *ngIf="manageNotifyForm.controls.mobileNo.errors">Mobile Number is required.</div>  
+          <div *ngIf="manageNotifyForm.controls.mobileNo.errors">Please, Enter 10 digit Mobile Number.</div>  
+      </div>  
+        <button type="button" (click)="onSubmit()" class="btn btn-secondary btn-lg btn-block mt-4"
+        [disabled]="manageNotifyForm.invalid">NOTIFY ME</button>
+      </div>
+    </form>
+  </div>
+</ng-container>

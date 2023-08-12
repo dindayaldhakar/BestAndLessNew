@@ -13,7 +13,7 @@ import {
 } from '@spartacus/core';
 import { CurrentProductService, ModalService, StockNotificationComponent } from '@spartacus/storefront';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { CustomStockNotificationDialogComponent } from './stock-notification-dialog/stock-notification-dialog.component';
 
 @Component({
   selector: 'cx-stock-notification',
@@ -24,11 +24,6 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 export class CustomStockNotificationComponent extends StockNotificationComponent implements OnInit, OnDestroy {
   
   closeResult!: string;
-  addPaymentForm!: FormGroup;
-  form = {   
-    email: '',
-    password: ''
-  };
   constructor(
     currentProductService: CurrentProductService,
     globalMessageService: GlobalMessageService,
@@ -37,8 +32,7 @@ export class CustomStockNotificationComponent extends StockNotificationComponent
     modalService: ModalService,
     notificationPrefService: UserNotificationPreferenceService,
     userIdService: UserIdService,
-    private bsModalService: NgbModal,
-    private formBuilder: FormBuilder
+    private bsModalService: NgbModal
   ) {
     super(currentProductService,
        globalMessageService,
@@ -51,19 +45,20 @@ export class CustomStockNotificationComponent extends StockNotificationComponent
 
   ngOnInit() {
     super.ngOnInit();
-    this.addPaymentForm = this.formBuilder.group({
-      jobId: ['', [Validators.required, Validators.maxLength(9)]],
-      grossAmount:  ['', [Validators.required, Validators.max(10000), Validators.min(-10000)]]
-    });
+    
   }
-  get f() { return this.addPaymentForm.controls; }
   
-  notifiMe(content: any) {
-    this.bsModalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  notifiMe() {
+    this.bsModalService.open(CustomStockNotificationDialogComponent,
+      {
+        centered: true,
+        size: 'md',
+      })
+    //   .result.then((result) => {
+    //   this.closeResult = `Closed with: ${result}`;
+    // }, (reason) => {
+    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    // });
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -73,10 +68,6 @@ export class CustomStockNotificationComponent extends StockNotificationComponent
     } else {
       return  `with: ${reason}`;
     }
-  }
-  onSubmit(form: NgForm){
-    console.log(form);
-
   }
 
   ngOnDestroy(): void {

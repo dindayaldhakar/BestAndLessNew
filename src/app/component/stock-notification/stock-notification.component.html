@@ -39,7 +39,7 @@
     class="btn btn-primary btn-block btn-notify"
     type="button"
     aria-describedby="outOfStockMessage"
-    (click)="notifiMe(notifiMeModal)"
+    (click)="notifiMe()"
   >
     {{ 'stockNotification.notifyMe' | cxTranslate }}
   </button>
@@ -69,28 +69,4 @@
     </div>
   </div>
 </ng-template>
-<ng-template #notifiMeModal let-modal>
-  <div class="modal-header">
-    <div class="width-100">
-      <h4 class="modal-title text-center mt-4" id="modal-basic-title">LOG IN</h4>    
-      <div class="text-center mt-2">Login to get notified when this product is available</div>
-    </div>    
-    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">×</span>
-    </button> -->
-  </div>
-  <div class="modal-body">
-    <form name="form" [formGroup]="addPaymentForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <input class="form-control mt-4" type="text" formControlName="email" required placeholder="Email">
-        <input class="form-control mt-4" type="possword" formControlName="password" placeholder="Password">
-        <a class="float-right link-text mt-2 mb-2">FORGOT PASSWORD?</a>
-        <button type="button" class="btn btn-secondary btn-lg btn-block mt-4">LOG IN</button>
-        <div class="text-center mt-4">Don't have a account <a class="link-text">SIGN UP</a></div>
-      </div>
-    </form>
-  </div>
-  <!-- <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">LOG IN</button>
-  </div> -->
-</ng-template>
+

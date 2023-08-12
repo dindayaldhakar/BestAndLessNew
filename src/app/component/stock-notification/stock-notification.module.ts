@@ -9,10 +9,13 @@ import {
 } from '@spartacus/core';
 import { RouterModule } from '@angular/router';
 import { SpinnerModule } from '@spartacus/storefront';
+import { CustomStockNotificationDialogComponent } from './stock-notification-dialog/stock-notification-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [CustomStockNotificationComponent],
-  imports: [CommonModule, RouterModule, I18nModule, SpinnerModule, UrlModule],
+  declarations: [CustomStockNotificationComponent, CustomStockNotificationDialogComponent],
+  imports: [CommonModule, RouterModule, I18nModule, SpinnerModule, UrlModule, FormsModule,
+    ReactiveFormsModule ],
   providers: [
     provideDefaultConfig(<CmsConfig>{
       cmsComponents: {
@@ -22,6 +25,6 @@ import { SpinnerModule } from '@spartacus/storefront';
       },
     }),
   ],
-  exports: [CustomStockNotificationComponent],
+  exports: [CustomStockNotificationComponent, CustomStockNotificationDialogComponent],
 })
 export class CustomStockNotificationModule {}
