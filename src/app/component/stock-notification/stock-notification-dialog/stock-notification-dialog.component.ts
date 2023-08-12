@@ -27,6 +27,9 @@ export class CustomStockNotificationDialogComponent implements OnInit, OnDestroy
   onSubmit(){
     this.emailSection = false;
     console.log(this.addNotifyForm.controls);
+  }
+  onNotifySubmit(){
+    console.log(this.manageNotifyForm.controls);
 
   }
 

@@ -35,7 +35,7 @@
           <div *ngIf="manageNotifyForm.controls.mobileNo.errors">Mobile Number is required.</div>  
           <div *ngIf="manageNotifyForm.controls.mobileNo.errors">Please, Enter 10 digit Mobile Number.</div>  
       </div>  
-        <button type="button" (click)="onSubmit()" class="btn btn-secondary btn-lg btn-block mt-4"
+        <button type="button" (click)="onNotifySubmit()" class="btn btn-secondary btn-lg btn-block mt-4"
         [disabled]="manageNotifyForm.invalid">NOTIFY ME</button>
       </div>
     </form>
