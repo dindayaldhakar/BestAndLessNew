@@ -28,8 +28,8 @@
   <div class="modal-body">
     <form name="form" [formGroup]="manageNotifyForm">
       <div class="form-group">
-        <h4 class="modal-title text-center mt-4" id="modal-basic-title">SMS NOTIFICATIONS</h4>    
-        <div class="text-center mt-2">Please enter your mobile number to recive notification</div>
+        <h4 class="modal-title mt-4" id="modal-basic-title">SMS NOTIFICATIONS</h4>    
+        <div class="mt-2">Please enter your mobile number to recive notification</div>
         <input class="form-control mt-4" type="text" formControlName="mobileNo" placeholder="Mobile number">
         <div *ngIf="manageNotifyForm.controls.touched && manageNotifyForm.controls.invalid" class="alert alert-danger">  
           <div *ngIf="manageNotifyForm.controls.mobileNo.errors">Mobile Number is required.</div>  
