@@ -1,0 +1,18 @@
+{
+    "login": {
+        "loginDiscription": "Login to get notified when this product is available",
+        "loginText": "LOG IN",
+        "forgotPassword": "FORGOT PASSWORD?",
+        "helpText": "Don't have a account",
+        "signup": "SIGN UP",
+        "manageNotifications": "MANAGE NOTIFICATIONS",
+        "smsNotifications": "SMS NOTIFICATIONS",
+        "smsNotificationHelpText": "Please enter your mobile number to recive notification",
+        "mobileNoRequired": "Mobile Number is required.",
+        "MobileNoNotValid": "Number is not valid",
+        "notifyMe": "NOTIFY ME",
+        "email": "Email",
+        "password": "Password",
+        "mobileNo": "Mobile Number"
+    }
+}

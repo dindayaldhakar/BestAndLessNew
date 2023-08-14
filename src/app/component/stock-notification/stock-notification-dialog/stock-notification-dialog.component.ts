@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 @Component({
   selector: 'cx-stock-notification-dialog',
   templateUrl: './stock-notification-dialog.component.html',
+  styleUrls: ['./stock-notification-dialog.component.scss'],
 })
 export class CustomStockNotificationDialogComponent implements OnInit, OnDestroy {
   
@@ -33,7 +34,8 @@ export class CustomStockNotificationDialogComponent implements OnInit, OnDestroy
 
   }
 
-  ngOnDestroy(): void {
-    
+  ngOnDestroy(): void {    
   }
+
+  mobileChange(){}
 }

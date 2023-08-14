@@ -21,6 +21,9 @@ import { defaultCmsContentProviders, layoutConfig, mediaConfig } from "@spartacu
     },
   }), provideConfig(<I18nConfig>{
     i18n: {
+      backend: {
+        loadPath: 'assets/i18n/{{lng}}/{{ns}}.json',
+      },
       resources: translations,
       chunks: translationChunksConfig,
       fallbackLang: 'en'
